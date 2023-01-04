@@ -123,3 +123,8 @@ StrictMode는 다음과 같은 부분에서 도움이 된다.
 -권장되지 않는 findDOMNode 사용에 대한 경고
 -예상치 못한 부작용 검사
 -레거시 context API 검사
+
+
+<useEffect 실행 순서>
+useEffect는 랜더링이 끝난 후에 실행되므로,
+가장 하위에 있는 컴포넌트의 useEffect부터 실행된다.
