@@ -140,3 +140,38 @@ useEffect는 랜더링이 끝난 후에 실행되므로,
 [...array] 이렇게 사용하면 array를 해체한 후 배열에 넣는다.
 즉, array 원소가 들어있는 새로운 배열이 리턴되는 것이다.
 핵심은 새로운 주소값을 할당해주는 것이다.
+
+
+
+<create-react-app>
+리액트 실행에 필요한 기본 개발 환경을 간편하게 구축해주는 도구이다.
+(create-react-app은 boilerplate의 한 종류이다.)
+
+리액트 프로젝트를 생성할 때에는 웹팩(webpack), 바펠(babel) 등이 필요한데, 이러한 설정들을 create-react-app 명령어로 간편하게 설치 및 설정을 해준다.
+(깨알상식: create-react-app은 facebook에서 만들고 배포하고 있음)
+
+--create-react-app이 실행되고 브라우저로 리액트 프로그램을 로딩하기까지의 기본 흐름--
+npm start의 과정은 다음과 같다.
+1. npm start 명령어를 수행하면 package.json의 script에 있는 start 명령어로 등록된 코드를 실행한다.
+
+2. react-scripts start(위의 strat 명령어로 등록된 코드) 실행
+- create-react-app은 react-scripts를 기본 포함하고 있다.
+- react-scripts는 node_module 폴더에 저장되어 있으며,
+react-scripts 폴더 내의 start.js 파일을 실행시킨다.
+
+3. start.js 파일 실행
+- start.js 파일 안에서 웹팩 설정 등 여러가지 설정을 진행한다.
+- 또한 다음 코드와 같이 webpack-dev-server를 이용해 브라우저가 접속할 개발 서버를 실행한다.
+(webpack-dev-server: 빠른 프론트 개발을 위해 webpack에서 제공하는, 실시간 리로딩이 가능한 개발 서버)
+
+const devServer = new WebpackDevServer(compiler, serverConfig);
+    // Launch WebpackDevServer.
+	devServer.listen(port, HOST, err => {
+      if (err) {
+        return console.log(err);
+      }
+      {...}
+      
+    });
+
+-브라우저는 이 서버에 요청을 보내 번들화된 리액트 소스를 받아서 실행한다.
